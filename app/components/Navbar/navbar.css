@@ -2,14 +2,13 @@ ul{
     list-style: none;
 }
 li{ 
-    text-shadow: 0px 0px 8px white;
     letter-spacing: 8px;
     display: inline;
     margin: 8rem;
 }
 .link{
     font-size: 1.2rem;
-    color: white;
+    color: black;
     font-weight: bold;
     text-decoration: none;
 }

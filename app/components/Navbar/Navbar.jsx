@@ -1,21 +1,23 @@
 import Link from 'next/link';
+import Heading from "../Heading/Heading";
 import './navbar.css';
 
 
 export default function NavBar() {
     return (<nav>
+        <Heading>Nations Of Planet Earth</Heading>
         <ul>
            <li >
             <Link href="/" className='link'>
             HOME</Link>
           </li>
+         {/*  <li>
+            <Link href="/maps" className='link'>
+            Maps</Link>
+          </li> */}
           <li>
             <Link href="/about" className='link'>
-            ABOUT</Link>
-          </li>
-          <li>
-            <Link href="/space_pictures" className='link'>
-            PICTURES</Link>
+            About</Link>
           </li>
         </ul>
       </nav>)

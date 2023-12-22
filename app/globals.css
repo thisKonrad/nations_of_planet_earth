@@ -4,9 +4,9 @@
   font-family: 'Courier New', Courier, monospace;
   font-size: 100%;
   --bodyBackground: rgb(240, 240, 240);
-  --mainBackground: rgb(14, 45, 79);
-  --headerBackground: rgb(63, 52, 95);
-  --footerBackground: rgb(193, 193, 193);
+  --mainBackground: rgb(93, 93, 172);
+  --headerBackground: whitesmoke;
+  --footerBackground: gainsboro;
 }
  
 body{
@@ -24,7 +24,7 @@ header{
   width: 100%;
   top: 0;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 6rem;
   background: var(--headerBackground);
   box-shadow: 0px 0px 1rem black;
 }

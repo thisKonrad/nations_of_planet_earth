@@ -1,7 +1,7 @@
-'use client'
-import Heading from "./components/Heading/Heading";
+'use client';
 import useSWR from 'swr';
 import ListItem from './components/List/ListItem';
+import styles from './page.module.css'
 
 /* Rest Countires Api */
 const fetcher = (...args) => fetch(...args).then(res => res.json());
@@ -25,15 +25,12 @@ export default function Home() {
 
   console.log("DATA: ", data)
  
-  if (isLoading) return <div><h2>.. rover is loading</h2></div>
-  if (isError) return <div><h2>ERROR</h2></div>
+  if (isLoading) return <div className='api_status'><h2>... nations are loading</h2></div>
+  if (isError) return <div className='api_status'><h2>ERROR</h2></div>
 
   return (<>
-   <Heading>Countrys Of Planet Earth:</Heading>
-   <div>
-      <ul className='country_list_wrap'>
+      <ul className={styles.country_list_wrap}>
       <ListItem data={data}/>
       </ul>
-   </div>
   </>)
 }
