@@ -1,4 +1,6 @@
 import uuid from 'react-uuid';
+
+import Link from 'next/link';
 import Image from "next/image";
 import './list_item.css';
 
@@ -11,12 +13,13 @@ return(<>
     <li key={uuid()} >
         <div className='list_item_wrap'>
         <h2>{country.name.common}</h2>
+            <Link href='../[Details]'></Link>
         <Image 
-            width={320}
-            height={240}
+            className='image'
+            width={0}
+            height={0}
             src={country.flags.svg}
             alt={country.name.common}  
-            placeholder={'nation banner image'}
             priority={false}>
         </Image>
         </div>

@@ -17,6 +17,7 @@ background: var(--bodyBackground);
 }
 
 header{
+  z-index: 99;
   position: fixed;
   display: flex;
   justify-content: center;

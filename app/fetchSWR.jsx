@@ -16,6 +16,6 @@ export default function useData(){
     return {
         data: data,
         isLoading,
-        isError: error,
+        error: error,
       }
 }
