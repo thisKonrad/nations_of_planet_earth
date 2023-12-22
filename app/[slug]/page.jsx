@@ -1,17 +1,43 @@
 /* :::: Country Details Slug :::: */
 'use client'
+import { useSearchParams } from "next/navigation";
+import useData from '../fetchSWR';
 /* import Image from "next/image";
 import Heading from "../components/Heading/Heading"; */
 
 
-export default function NationDetails({params}) {
+export default function NationDetails({}) {
 
-  const {slug} = params;
+  const { data, isLoading, error } = useData();
+  const submittedNation = useSearchParams();
 
-  console.log("SLUG:", slug)
+  if(submittedNation.get('id') === null){
+    console.log("ERROR")
+    return <div className='api_status'>ERROR</div>
+  }
+  if (isLoading) return <div className='api_status'>
+  <h2>... nations are loading</h2></div>
+  if (error) return <div className='api_status'>
+  <article>
+  <h2>ERROR</h2>
+  <br></br>
+  <p> ... No data available!</p>
+  <p>Please, check your internet</p>
+  <p>connection!</p>
+  </article>
+  </div>  
+
+  console.log('Details,-Data:', data)
+
+
+  const nation = data.find((nation)=> data.name.common === nation.name.common);
+
+  console.log("FIND: ",nation)
+
+
 
   return (<div>
-    <h1>DETAILS,</h1>
+    <h1>DETAILS, of: {nation.get('id')}</h1>
   </div>
    )
 }
