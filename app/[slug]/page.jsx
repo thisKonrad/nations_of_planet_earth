@@ -3,7 +3,6 @@
 import { useSearchParams } from "next/navigation";
 import useData from '../fetchSWR';
 import Image from "next/image";
-import Heading from "../components/Heading/Heading";
 import './details_style.css'
 
 export default function NationDetails({}) {
@@ -34,7 +33,7 @@ export default function NationDetails({}) {
 
 
   const nation= data.find((item)=> item.name.official === nationID);
-  console.log("KEY:",nation)
+
 
   return (
     <section>
@@ -66,12 +65,12 @@ export default function NationDetails({}) {
               <p>Continent: {nation.continents}</p>
               <p>Region: {nation.region}</p>
               <p>Capital: {nation.capital}</p>
-              <p>Languages: {JSON.stringify(nation.languages)}</p>
-              <p>Currencies: {JSON.stringify(nation.currencies)}</p>
+              <p>Languages: {Object.values(nation.languages)[0]}</p>
+            {/*   <p>Currencies: {Object.values(JSON.parse(nation.currencies))}</p>   */}
               <p>Population: {nation.population}</p> 
               <p>Timezone: {nation.timezones}</p>
               <p>Sub Region: {nation.subregion}</p>
-              <p>Car Signs: {JSON.stringify(nation.car)}</p>
+              <p>Car Signs: {Object.values(nation.car)[0]}</p>
               <p>UN Member: {nation.unMember === true ? <span>Yes</span> : <span>No</span>}</p>
               <p>Independent: {nation.independent === true ? <span>Yes</span> : <span>No</span>}</p>
             </div>
