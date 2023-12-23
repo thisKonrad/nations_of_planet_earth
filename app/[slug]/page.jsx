@@ -2,11 +2,15 @@
 'use client'
 import { useSearchParams } from "next/navigation";
 import useData from '../fetchSWR';
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import './details_style.css'
 
 export default function NationDetails({}) {
+
+
+  const[state, setState] = useState(true);
 
   const { data, isLoading, error } = useData();
   const submittedNation = useSearchParams();
@@ -68,14 +72,16 @@ export default function NationDetails({}) {
         <br></br>
 
         <h2>Coat Of Arms:</h2>
-        <Image 
-          className='coat_of_arms'
-          width={120}
-          height={120}
-          src={nation.coatOfArms.svg}
-          alt={nation.name}  
-          priority={false}>
-        </Image>
+        {Object.keys(nation.coatOfArms).length === 0 ? <h2>no data</h2> :
+          <Image 
+            onClick={()=> setState(!state)}
+            className='coat_of_arms'
+            width={ state ? 140 : 320}
+            height={ state ? 140 : 320}
+            src={nation.coatOfArms.svg}
+            alt={nation.name}  
+            priority={false}>
+          </Image>}
         <br></br>
         <Link 
         href={nation.maps.googleMaps} 
@@ -89,7 +95,7 @@ export default function NationDetails({}) {
         <ul>
         {<li>
             <div className='info_article'>
-              <p>Official name: {nation.name.official}</p>
+              <p>Official Name: {nation.name.official}</p>
               <p>Continent: {nation.continents}</p>
               <p>Region: {nation.region}</p>
               <p>Capital: {nation.capital}</p>
@@ -97,7 +103,7 @@ export default function NationDetails({}) {
               <p>Currencies: {currencieValues[0]}</p>  
               <p>Currencie Symbol: {currencieValues[1]}</p>  
               <p>Population: {nation.population} people</p> 
-              <p>Timezone: {nation.timezones}</p>
+              <p>Timezone: {nation.timezones[0]}</p>
               <p>Sub Region: {nation.subregion}</p>
               <p>Car Signs: {Object.values(nation.car)[0]}</p>
               <p>UN Member: {nation.unMember === true ? <span>Yes</span> : <span>No</span>}</p>
