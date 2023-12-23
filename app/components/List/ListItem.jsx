@@ -7,7 +7,7 @@ import './list_item.css';
 export default function ListItem({data}){
 
 
-console.log("LISTDATA: ", data)
+//console.log("LISTDATA: ", data)
 
 return(<>
     {data &&
@@ -17,9 +17,8 @@ return(<>
         <h2>{country.name.common}</h2>
         <Link href={{
             pathname:'/slug',
-            query: {id: country.name.common}}}>
+            query: {id: country.name.official}}}>
         <Image 
-            key={country.name.common}
             className='image'
             width={0}
             height={0}
