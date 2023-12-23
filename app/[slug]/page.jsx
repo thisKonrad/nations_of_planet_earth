@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import useData from '../fetchSWR';
 import Image from "next/image";
+import Link from "next/link";
 import './details_style.css'
 
 export default function NationDetails({}) {
@@ -31,15 +32,31 @@ export default function NationDetails({}) {
   console.log('Details Page Data:', data)
   console.log('Nation Id: ', nationID)
 
-
   const nation= data.find((item)=> item.name.official === nationID);
+
+  console.log('NATION: ', nation)
+
+  let currencieValues = [];
+
+  function getCurrencieValues(){
+
+    let currencie = nation.currencies;
+ 
+    for (let key in currencie) {
+      if (currencie.hasOwnProperty(key)) {
+        currencieValues.push(currencie[key].name)
+        currencieValues.push(currencie[key].symbol);
+        }
+    }
+    return currencieValues;
+  } 
+  getCurrencieValues()
 
 
   return (
     <section>
-<div className='details_wrap'>
-    <h1>{nation.name.common}</h1>
-        <h2>Flag:</h2>
+    <div className='details_wrap'>
+      <h1>{nation.name.common}</h1>
         <Image 
             className='image'
             width={0}
@@ -49,15 +66,26 @@ export default function NationDetails({}) {
             priority={false}>
         </Image>
         <br></br>
+
         <h2>Coat Of Arms:</h2>
         <Image 
-            className='coat_of_arms'
-            width={120}
-            height={120}
-            src={nation.coatOfArms.svg}
-            alt={nation.name}  
-            priority={false}>
+          className='coat_of_arms'
+          width={120}
+          height={120}
+          src={nation.coatOfArms.svg}
+          alt={nation.name}  
+          priority={false}>
         </Image>
+        <br></br>
+        <Link 
+        href={nation.maps.googleMaps} 
+        target='_blank'
+        className='map_link'
+        >
+        <button className='button_maps'>
+          show on maps 
+        </button>
+        </Link>
         <ul>
         {<li>
             <div className='info_article'>
@@ -66,8 +94,9 @@ export default function NationDetails({}) {
               <p>Region: {nation.region}</p>
               <p>Capital: {nation.capital}</p>
               <p>Languages: {Object.values(nation.languages)[0]}</p>
-            {/*   <p>Currencies: {Object.values(JSON.parse(nation.currencies))}</p>   */}
-              <p>Population: {nation.population}</p> 
+              <p>Currencies: {currencieValues[0]}</p>  
+              <p>Currencie Symbol: {currencieValues[1]}</p>  
+              <p>Population: {nation.population} people</p> 
               <p>Timezone: {nation.timezones}</p>
               <p>Sub Region: {nation.subregion}</p>
               <p>Car Signs: {Object.values(nation.car)[0]}</p>
