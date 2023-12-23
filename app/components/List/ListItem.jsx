@@ -20,8 +20,8 @@ return(<>
             query: {id: country.name.official}}}>
         <Image 
             className='image'
-            width={0}
-            height={0}
+            width={360}
+            height={280}
             src={country.flags.svg}
             alt={country.name.common}
             priority={false}>
