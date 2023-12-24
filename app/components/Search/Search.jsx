@@ -1,43 +1,26 @@
-import Select from 'react-select'
+/* :: Select Nation :: */
 import './search.css';
 
 
-export default function Search({data, onHandleChange}){
+export default function Search({data, onHandleChange, userInput}){
 
-    let option = data.map(function(item) {
-        return { value: item.name.common, label: item.name.common };
-    });
-
-    /* create new theme for Select package: */
-    function nationTheme(theme){
-        return {
-            ...theme,
-            colors:{
-                ...theme.colors,
-                primary25:'lightblue',
-                primary: 'orange'
-            }
-
-        };
-
-    }
+    let optionName = data.filter((item)=>item.name.common)
 
 
     return(<>
     <section className='select_wrap'>
         <label htmlFor='selectbar'>
             Select by Name:
-            <Select 
+            <select 
             name='nation_by_name' 
             id='selectbar'
             className='select'   
-            options={option} 
-            onChange={(choice) => onHandleChange(choice)}
-            theme={nationTheme}
+            value={userInput} 
+            onChange={(event)=> onHandleChange(event)} 
             placeholder=' select by name ...'
-            isSearchable
             >
-            </Select>
+            {data.map((item)=> <option key={item.name.common}>{item.name.common}</option>)}
+            </select>
         </label>
     </section>
     </>)

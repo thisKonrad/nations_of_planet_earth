@@ -30,8 +30,8 @@ export default function Home() {
     const sortedData = data.slice().sort(
     (a,b)=> a.name.common.localeCompare(b.name.common))
 
-    function handleChange(opt){
-      setUserChange(opt)
+    function handleChange(event){
+      setUserChange(event.target.value)
       console.log("USER CHANGE:",userChange);
     }
 
@@ -39,8 +39,10 @@ export default function Home() {
   return (<>
   <header className={styles.search_wrap}>
     <Search
-    onHandleChange={handleChange}
-    data={sortedData}/>
+      data={sortedData}
+      onHandleChange={handleChange}
+      userInput={userChange}
+   />
   </header>
       <ul className={styles.country_list_wrap}>
       <ListItem 
