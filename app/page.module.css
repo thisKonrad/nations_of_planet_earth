@@ -14,3 +14,22 @@
     gap: 0.8rem;
     width: 100%;
 }
+.search_wrap{
+    position: fixed;
+    margin-top: 8rem;
+    z-index: 100;
+    border: 2px solid black;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 8px;
+    height: 6rem;
+    width: 100%;
+    top: 0; 
+
+
+    background: var(--headerBackground);
+}

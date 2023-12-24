@@ -57,7 +57,7 @@ export default function NationDetails({}) {
   getCurrencieValues()
 
 
-  return (
+  return (<>
     <section>
     <div className='details_wrap'>
       <h1>{nation.name.common}</h1>
@@ -70,7 +70,6 @@ export default function NationDetails({}) {
             priority={false}>
         </Image>
         <br></br>
-
         <h2>Coat Of Arms:</h2>
         {Object.keys(nation.coatOfArms).length === 0 ? <h2>no data</h2> :
           <Image 
@@ -105,32 +104,13 @@ export default function NationDetails({}) {
               <p>Population: {nation.population} people</p> 
               <p>Timezone: {nation.timezones[0]}</p>
               <p>Sub Region: {nation.subregion}</p>
-              <p>Car Signs: {Object.values(nation.car)[0]}</p>
+              <p>Car Signs: {Object.values(nation.car)[0][0]}</p>
               <p>UN Member: {nation.unMember === true ? <span>Yes</span> : <span>No</span>}</p>
               <p>Independent: {nation.independent === true ? <span>Yes</span> : <span>No</span>}</p>
             </div>
         </li>} 
         </ul>
       </div>
-    </section>)
+    </section>
+    </>)
 }
-
- /* <div>
-        <Heading>{Details.name} - details: </Heading>
-        <div className='details_wrap'>
-        <Image 
-            className='image'
-            width={0}
-            height={0}
-            src={Details.flags}
-            alt={Details.name}  
-            priority={false}>
-        </Image>
-        <article>
-          <p>Nation: {Details.name}</p>
-          <p>Region: {Details.region}</p>
-          <p>Capital: {Details.capital}</p>
-          <p>Languages: {Details.languages}</p>
-          <p>Population: {Details.population}</p>
-        </article>
-        </div> */

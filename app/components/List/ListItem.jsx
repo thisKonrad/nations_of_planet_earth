@@ -1,18 +1,15 @@
-import uuid from 'react-uuid';
+//import uuid from 'react-uuid';
 import Link from 'next/link';
 import Image from "next/image";
-import { useState } from 'react';
 import './list_item.css';
 
 export default function ListItem({data}){
 
 
-//console.log("LISTDATA: ", data)
-
 return(<>
     {data &&
     data.map((country)=> 
-    <li key={uuid()}> 
+    <li key={country.name.common}> 
         <div className='list_item_wrap'>
         <h2>{country.name.common}</h2>
         <Link href={{

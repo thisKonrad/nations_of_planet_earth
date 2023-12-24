@@ -16,7 +16,7 @@ margin: 0em auto;
 background: var(--bodyBackground);
 }
 
-header{
+.header_default{
   z-index: 99;
   position: fixed;
   display: flex;
