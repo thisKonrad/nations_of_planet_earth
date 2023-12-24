@@ -2,10 +2,7 @@
 import './search.css';
 
 
-export default function Search({data, onHandleChange, userInput}){
-
-    let optionName = data.filter((item)=>item.name.common)
-
+export default function Search({data, onHandleChange}){
 
     return(<>
     <section className='select_wrap'>
@@ -15,11 +12,13 @@ export default function Search({data, onHandleChange, userInput}){
             name='nation_by_name' 
             id='selectbar'
             className='select'   
-            value={userInput} 
+            value={''} 
             onChange={(event)=> onHandleChange(event)} 
             placeholder=' select by name ...'
             >
-            {data.map((item)=> <option key={item.name.common}>{item.name.common}</option>)}
+            <option>show all nations</option>
+            {data.map((item)=><option key={item.name.common}>{item.name.common}</option>
+            )}
             </select>
         </label>
     </section>

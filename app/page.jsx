@@ -41,11 +41,11 @@ export default function Home() {
     <Search
       data={sortedData}
       onHandleChange={handleChange}
-      userInput={userChange}
    />
   </header>
       <ul className={styles.country_list_wrap}>
       <ListItem 
+      userInput={userChange}
       data={sortedData}
       />
       </ul>
