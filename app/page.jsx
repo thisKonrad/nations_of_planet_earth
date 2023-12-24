@@ -9,9 +9,11 @@ import styles from './page.module.css'
 
 export default function Home() {
 
+  const [userChange, setUserChange] = useState('');
   const { data, isLoading, error } = useData();
-  const[name,setName]= useState(data);
 
+
+  /* API status handling: */
   if (isLoading) return <div className='api_status'>
     <h2>... nations are loading</h2></div>
   if (error) return <div className='api_status'>
@@ -24,27 +26,26 @@ export default function Home() {
     </article>
     </div>
 
-  function getSearchQuery(event){
+    /* order the data alphabetically: */
+    const sortedData = data.slice().sort(
+    (a,b)=> a.name.common.localeCompare(b.name.common))
 
-    event.preventDefault()
+    function handleChange(opt){
+      setUserChange(opt)
+      console.log("USER CHANGE:",userChange);
+    }
 
-    const searchQuery = event.target.search_nation.value;
-
-    console.log("INPUT VALUE: ",searchQuery);
-
-    setName(data.find((nation)=> nation.name.common === searchQuery));
-
-    //if event value === null setName(data) : setName name
-
-  }
-
+    
   return (<>
   <header className={styles.search_wrap}>
     <Search
-    handleSearch={getSearchQuery}/>
+    onHandleChange={handleChange}
+    data={sortedData}/>
   </header>
       <ul className={styles.country_list_wrap}>
-      <ListItem data={data}/>
+      <ListItem 
+      data={sortedData}
+      />
       </ul>
   </>)
 }

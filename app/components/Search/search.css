@@ -1,4 +1,4 @@
-.search_form{
+.select_wrap{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +9,7 @@
     background-color: transparent;
 }
 
-.search_text{
+.select{
     padding-right: 6px;
     height: 2rem;
     margin: 12px;
@@ -18,5 +18,5 @@
 }
 label{
     font-size: 1.4rem;
-}
+} 
 
