@@ -44,21 +44,21 @@ export default function Home() {
         nation.name.common === nameQuery);
       }
     }
-
-    console.log("function get nn: ",getNationByName())
+    
 
     function handleSelect(){
-      
+      console.log(regionQuery)
     }
- 
+    handleSelect()
 
+  
   return (<>
   <header className={styles.search_wrap}>
     <Search
     onHandleChange={setNameQuery}
    />
    <SelectByRegion
-   onSelect={handleSelect}
+   onSelect={setRegionQuery}
    />
   </header>
       <ul className={styles.country_list_wrap}>

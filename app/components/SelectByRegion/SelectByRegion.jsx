@@ -11,14 +11,26 @@ export default function SelectByRegion({onSelect}){
     <select
         name='nation_by_name' 
         id='select_region'
+        value={onSelect()}
         className='select_region_class'   
         onChange={(event)=> onSelect(event.target.value)} 
         placeholder=' Select by Region ...'
     >
-        <option></option>
+        <option>Africa</option>
+        <option>Americas</option>
+        <option>Asia</option>
+        <option>Europe</option>
+        <option>Oceania</option>
+        <option>Antarctic</option>
     </select>
     </label>
     </section>
     </>)
 }
+
+
+
+/**
+ * Asia, Americas, Oceania, Europe, Antarctic, Africa
+ */
 
