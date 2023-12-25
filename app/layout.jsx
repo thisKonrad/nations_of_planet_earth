@@ -1,6 +1,7 @@
-import './globals.css'
-import styles from './page.module.css'
-import NavBar from './components/Navbar/Navbar'
+import NavBar from './components/Navbar/Navbar';
+import styles from './page.module.css';
+import './globals.css';
+
 
 export const metadata = {
   title: 'nations of planet earth',
@@ -9,7 +10,6 @@ export const metadata = {
 
 
 export default function RootLayout({ children }) {
-
 
   return (
     <html lang="en">
@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
       {children}
       </main>
       <footer>
-        <h4>footer/////////////////////////////:::::</h4>
+        <h4>:::::</h4>
       </footer>
     </body>
     </html>

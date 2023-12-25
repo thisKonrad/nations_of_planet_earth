@@ -2,7 +2,7 @@
 import useData from './fetchSWR';
 import { useState } from 'react';
 import ListItem from './components/List/ListItem';
-import Search from './components/Search/Search';
+import SearchByName from './components/Search/SearchByName';
 import SelectByRegion from './components/SelectByRegion/SelectByRegion';
 import styles from './page.module.css'
 
@@ -11,7 +11,6 @@ export default function Home() {
 
   const [nameQuery, setNameQuery] = useState('');
   const [regionQuery, setRegionQuery]= useState('');
-
   const { data, isLoading, error } = useData();
 
   /* API status handling: */
@@ -35,52 +34,39 @@ export default function Home() {
 
   function handleSelect(){
     
-    if(!nameQuery && !regionQuery) {
+    if(nameQuery === '' && regionQuery === '') {
         return sortedData;
     }
       else if(nameQuery){
- 
-        return sortedData.filter((nation)=> 
+       
+      return sortedData.filter((nation)=> 
         nation.name.common === nameQuery)
-
     }
       else if(regionQuery){
-     
-        return sortedData.filter((nation)=> 
+        
+      return sortedData.filter((nation)=> 
         nation.region === regionQuery)
     }
-  /*   else if(nameQuery && regionQuery){
-      return sortedData.filter((nation)=> 
-      nation.region === regionQuery)
-    } */
+    
   }
 
-/*     function handleRegionSelect(){
-      console.log("REGIONQUERY: ", regionQuery)
-      if(!regionQuery) {
-        return sortedData;
-      }
-      else{
-        setNameQuery('')
-        return sortedData.filter((nation)=> 
-        nation.region === regionQuery);
-      }
-    }handleRegionSelect() */
+  console.log("NAME QUERY: ", nameQuery)
+  console.log("Region Query: ", regionQuery);
 
-  
+
   return (<>
   <header className={styles.search_wrap}>
-    <Search
+    <SearchByName
     onSearch={setNameQuery}
    />
    <SelectByRegion
    onSelect={setRegionQuery}
    />
   </header>
-      <ul className={styles.country_list_wrap}>
-      <ListItem 
-      data={handleSelect()}
-      />
-      </ul>
+    <ul className={styles.country_list_wrap}>
+    <ListItem 
+    data={handleSelect()}
+    />
+    </ul>
   </>)
 }

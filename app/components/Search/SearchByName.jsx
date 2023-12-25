@@ -2,7 +2,7 @@
 import './search.css';
 
 
-export default function Search({onSearch}){
+export default function SearchByName({onSearch}){
 
     return(<>
     <section className='search_bar_wrap'>
@@ -11,7 +11,7 @@ export default function Search({onSearch}){
     <input type='text'
         name='nation_by_name' 
         id='searchbar'
-        className='search_nation'   
+        className='search_nation' 
         onChange={(event)=> onSearch(event.target.value)} 
         placeholder=' search by name ...'
     >
