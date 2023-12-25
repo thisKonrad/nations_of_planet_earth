@@ -2,7 +2,7 @@
 import './search.css';
 
 
-export default function Search({onHandleChange}){
+export default function Search({onSearch}){
 
     return(<>
     <section className='search_bar_wrap'>
@@ -12,7 +12,7 @@ export default function Search({onHandleChange}){
         name='nation_by_name' 
         id='searchbar'
         className='search_nation'   
-        onChange={(event)=> onHandleChange(event.target.value)} 
+        onChange={(event)=> onSearch(event.target.value)} 
         placeholder=' search by name ...'
     >
     </input>

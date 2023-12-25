@@ -1,4 +1,4 @@
-/* :: Select Nation :: */
+/* :: Select By Region :: */
 import './select_by_region.css';
 
 
@@ -11,7 +11,6 @@ export default function SelectByRegion({onSelect}){
     <select
         name='nation_by_name' 
         id='select_region'
-        value={onSelect()}
         className='select_region_class'   
         onChange={(event)=> onSelect(event.target.value)} 
         placeholder=' Select by Region ...'

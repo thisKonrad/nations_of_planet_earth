@@ -1,13 +1,12 @@
-//import uuid from 'react-uuid';
 import Link from 'next/link';
 import Image from "next/image";
 import './list_item.css';
 
-export default function ListItem({onNameSearch}){
 
+export default function ListItem({data}){
 
     return (<> 
-    { onNameSearch && onNameSearch.map((country)=> 
+    {data && data.map((country)=> 
         <li key={country.name.common}> 
         <div className='list_item_wrap'>
         <h2>{country.name.common}</h2>
@@ -26,7 +25,6 @@ export default function ListItem({onNameSearch}){
         </div>
         </li>)}
     </>)
-
 }
 
 

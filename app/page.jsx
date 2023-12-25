@@ -1,5 +1,4 @@
 'use client';
-/* import useSWR from 'swr'; */
 import useData from './fetchSWR';
 import { useState } from 'react';
 import ListItem from './components/List/ListItem';
@@ -29,33 +28,50 @@ export default function Home() {
     </div>
 
 
-    /* order the data alphabetically: */
-    const sortedData = data.slice().sort(
-    (a,b)=> a.name.common.localeCompare(b.name.common))
+  /* order the data alphabetically: */
+  const sortedData = data.slice().sort(
+  (a,b)=> a.name.common.localeCompare(b.name.common))
 
-    console.log("State of name Query: ",nameQuery)
 
-    function getNationByName(){
-      if(!nameQuery){
+  function handleSelect(){
+    
+    if(!nameQuery && !regionQuery) {
+        return sortedData;
+    }
+      else if(nameQuery){
+ 
+        return sortedData.filter((nation)=> 
+        nation.name.common === nameQuery)
+
+    }
+      else if(regionQuery){
+     
+        return sortedData.filter((nation)=> 
+        nation.region === regionQuery)
+    }
+  /*   else if(nameQuery && regionQuery){
+      return sortedData.filter((nation)=> 
+      nation.region === regionQuery)
+    } */
+  }
+
+/*     function handleRegionSelect(){
+      console.log("REGIONQUERY: ", regionQuery)
+      if(!regionQuery) {
         return sortedData;
       }
       else{
-        return data.filter((nation)=> 
-        nation.name.common === nameQuery);
+        setNameQuery('')
+        return sortedData.filter((nation)=> 
+        nation.region === regionQuery);
       }
-    }
-    
-
-    function handleSelect(){
-      console.log(regionQuery)
-    }
-    handleSelect()
+    }handleRegionSelect() */
 
   
   return (<>
   <header className={styles.search_wrap}>
     <Search
-    onHandleChange={setNameQuery}
+    onSearch={setNameQuery}
    />
    <SelectByRegion
    onSelect={setRegionQuery}
@@ -63,7 +79,7 @@ export default function Home() {
   </header>
       <ul className={styles.country_list_wrap}>
       <ListItem 
-      onNameSearch={getNationByName()}
+      data={handleSelect()}
       />
       </ul>
   </>)
