@@ -9,9 +9,9 @@ import styles from './page.module.css'
 
 export default function Home() {
 
-  const [userChange, setUserChange] = useState('');
-  const { data, isLoading, error } = useData();
+  const [nameQuery, setNameQuery] = useState('');
 
+  const { data, isLoading, error } = useData();
 
   /* API status handling: */
   if (isLoading) return <div className='api_status'>
@@ -26,27 +26,41 @@ export default function Home() {
     </article>
     </div>
 
+
     /* order the data alphabetically: */
     const sortedData = data.slice().sort(
     (a,b)=> a.name.common.localeCompare(b.name.common))
 
-    function handleChange(event){
-      setUserChange(event.target.value)
-      console.log("USER CHANGE:",userChange);
+
+
+    function handleNationByName(event){
+
+      setNameQuery(event.target.value);
+        console.log("USER CHANGE: ", nameQuery);
+
+      if(!nameQuery){
+        //console.log("QUERY DATA: ",data)
+        setNameQuery([...sortedData]);
+      }
+      else if(nameQuery){
+        //console.log("QUERY DATA: ", data.filter((nation)=> nation.name.common.includes(nameQuery)));
+        setNameQuery(sortedData.slice().filter((nation)=> nation.name.includes(nameQuery)))
+
+        //data.filter((nation)=> nation.name.common.includes(nameQuery));
+      }
     }
+ 
 
     
   return (<>
   <header className={styles.search_wrap}>
     <Search
-      data={sortedData}
-      onHandleChange={handleChange}
+      onHandleChange={handleNationByName}
    />
   </header>
       <ul className={styles.country_list_wrap}>
       <ListItem 
-      userInput={userChange}
-      data={sortedData}
+      filterByName={nameQuery}
       />
       </ul>
   </>)

@@ -2,24 +2,20 @@
 import './search.css';
 
 
-export default function Search({data, onHandleChange}){
+export default function Search({onHandleChange}){
 
     return(<>
-    <section className='select_wrap'>
-        <label htmlFor='selectbar'>
+    <section className='search_bar_wrap'>
+        <label htmlFor='searchbar'>
             Select by Name:
-            <select 
+            <input type='text'
             name='nation_by_name' 
-            id='selectbar'
-            className='select'   
-            value={''} 
+            id='searchbar'
+            className='search_nation'   
             onChange={(event)=> onHandleChange(event)} 
-            placeholder=' select by name ...'
+            placeholder=' search by name ...'
             >
-            <option>show all nations</option>
-            {data.map((item)=><option key={item.name.common}>{item.name.common}</option>
-            )}
-            </select>
+            </input>
         </label>
     </section>
     </>)

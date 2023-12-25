@@ -1,4 +1,4 @@
-.select_wrap{
+.search_bar_wrap{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +9,7 @@
     background-color: transparent;
 }
 
-.select{
+.search_nation{
     padding-right: 6px;
     height: 2rem;
     margin: 12px;
