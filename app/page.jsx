@@ -4,12 +4,14 @@ import useData from './fetchSWR';
 import { useState } from 'react';
 import ListItem from './components/List/ListItem';
 import Search from './components/Search/Search';
+import SelectByRegion from './components/SelectByRegion/SelectByRegion';
 import styles from './page.module.css'
 
 
 export default function Home() {
 
   const [nameQuery, setNameQuery] = useState('');
+  const [regionQuery, setRegionQuery]= useState('');
 
   const { data, isLoading, error } = useData();
 
@@ -31,36 +33,37 @@ export default function Home() {
     const sortedData = data.slice().sort(
     (a,b)=> a.name.common.localeCompare(b.name.common))
 
+    console.log("State of name Query: ",nameQuery)
 
-
-    function handleNationByName(event){
-
-      setNameQuery(event.target.value);
-        console.log("USER CHANGE: ", nameQuery);
-
+    function getNationByName(){
       if(!nameQuery){
-        //console.log("QUERY DATA: ",data)
-        setNameQuery([...sortedData]);
+        return sortedData;
       }
-      else if(nameQuery){
-        //console.log("QUERY DATA: ", data.filter((nation)=> nation.name.common.includes(nameQuery)));
-        setNameQuery(sortedData.slice().filter((nation)=> nation.name.includes(nameQuery)))
+      else{
+        return data.filter((nation)=> 
+        nation.name.common === nameQuery);
+      }
+    }
 
-        //data.filter((nation)=> nation.name.common.includes(nameQuery));
-      }
+    console.log("function get nn: ",getNationByName())
+
+    function handleSelect(){
+      
     }
  
 
-    
   return (<>
   <header className={styles.search_wrap}>
     <Search
-      onHandleChange={handleNationByName}
+    onHandleChange={setNameQuery}
+   />
+   <SelectByRegion
+   onSelect={handleSelect}
    />
   </header>
       <ul className={styles.country_list_wrap}>
       <ListItem 
-      filterByName={nameQuery}
+      onNameSearch={getNationByName()}
       />
       </ul>
   </>)

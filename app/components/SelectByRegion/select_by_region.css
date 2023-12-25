@@ -1,0 +1,22 @@
+.select_region_wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    width: 40%;
+    height: 4rem;
+    background-color: transparent;
+}
+
+.select_region_class{
+    padding-right: 6px;
+    height: 2rem;
+    margin: 12px;
+    width: 18rem;
+    font-size: 1.2rem;
+}
+label{
+    font-size: 1.4rem;
+} 
+
