@@ -4,15 +4,21 @@ import { useState } from 'react';
 import ListItem from './components/List/ListItem';
 import Link from 'next/link';
 import Heading from './components/Heading/Heading';
-import SearchByName from './components/Search/SearchByName';
-import SelectByRegion from './components/SelectByRegion/SelectByRegion';
+import Form from './components/userInputForm/Form';
 import styles from './page.module.css'
 
 
 export default function Home() {
 
-  const [regionQuery, setRegionQuery]= useState(''); 
-  const [nameQuery, setNameQuery] = useState('');
+const[userInput, setUserInput]= useState({
+    nameSearch:'',
+    regionSelect:'',
+}); 
+
+function handleChange(event){
+  const { name, value } = event.target;
+  setUserInput({ ...userInput, [name]: value });
+};
 
   
   const { data, isLoading, error } = useData();
@@ -35,33 +41,27 @@ export default function Home() {
   const sortedData = data.slice().sort(
   (a,b)=> a.name.common.localeCompare(b.name.common));
 
-
-  function handleSelect(){
-
-    if(nameQuery ==='' && regionQuery ==='') {
+  function handleUserInput(userInput){
+    if(!userInput) {
       return sortedData;
     }
-    else if(nameQuery){
+    else if(userInput.nameSearch){
       return sortedData.filter((nation)=> 
-        nation.name.common.includes(nameQuery));
+      nation.name.common.includes(userInput.nameSearch));
     }
-    else if(regionQuery){
+    else if(userInput.regionSelect){
       return sortedData.filter((nation)=> 
-        nation.region === regionQuery);
+      nation.region === userInput.regionSelect);
     } 
+    console.log("USER_Name Search::", userInput.nameSearch)
+    console.log("USER_Region Select::", userInput.regionSelect)
   }
 
   function clearAll(){
-    setRegionQuery('')
-    return setNameQuery('');
+    setUserInput('')
   }
-   
-  console.log("NAME QUERY: ", nameQuery)
-  console.log("Region Query: ", regionQuery); 
 
-
-  return (<>
-     {/*  <header className='header_default'> */}
+return (<>
      <header className='header_default'>
      <Heading>Nations Of Planet Earth</Heading>
         <ul>
@@ -75,30 +75,17 @@ export default function Home() {
             </Link>
           </li>
         </ul>
-        <SearchByName
-          onSearch={setNameQuery} 
-          search={nameQuery}
-        />
-        <SelectByRegion
-          onSelect={setRegionQuery} 
+        <Form
+        input={userInput}
+        onHandleChange={handleChange}
         />
       </header>
-{/*   <header className={styles.search_wrap}>
-    <SearchByName
-    onSearch={setNameQuery} 
-    search={nameQuery}
-   />
-   <SelectByRegion
-    onSelect={setRegionQuery} 
-    select={regionQuery}
-   />
-  </header> */}
   <section>
   <ul className={styles.country_list_wrap}>
-    <ListItem 
-    data={handleSelect()}
+    <ListItem
+    data={handleUserInput(userInput)} 
     />
-    </ul>
+    </ul>  
   </section>
   </>)
 }
