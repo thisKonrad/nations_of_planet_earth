@@ -2,6 +2,8 @@
 import useData from './fetchSWR';
 import { useState } from 'react';
 import ListItem from './components/List/ListItem';
+import Link from 'next/link';
+import Heading from './components/Heading/Heading';
 import SearchByName from './components/Search/SearchByName';
 import SelectByRegion from './components/SelectByRegion/SelectByRegion';
 import styles from './page.module.css'
@@ -9,8 +11,10 @@ import styles from './page.module.css'
 
 export default function Home() {
 
+  const [regionQuery, setRegionQuery]= useState(''); 
   const [nameQuery, setNameQuery] = useState('');
-  const [regionQuery, setRegionQuery]= useState('');
+
+  
   const { data, isLoading, error } = useData();
 
   /* API status handling: */
@@ -29,44 +33,72 @@ export default function Home() {
 
   /* order the data alphabetically: */
   const sortedData = data.slice().sort(
-  (a,b)=> a.name.common.localeCompare(b.name.common))
+  (a,b)=> a.name.common.localeCompare(b.name.common));
 
 
   function handleSelect(){
-    
-    if(nameQuery === '' && regionQuery === '') {
-        return sortedData;
+
+    if(nameQuery ==='' && regionQuery ==='') {
+      return sortedData;
     }
-      else if(nameQuery){
-       
+    else if(nameQuery){
       return sortedData.filter((nation)=> 
-        nation.name.common === nameQuery)
+        nation.name.common.includes(nameQuery));
     }
-      else if(regionQuery){
-        
+    else if(regionQuery){
       return sortedData.filter((nation)=> 
-        nation.region === regionQuery)
-    }
-    
+        nation.region === regionQuery);
+    } 
   }
 
+  function clearAll(){
+    setRegionQuery('')
+    return setNameQuery('');
+  }
+   
   console.log("NAME QUERY: ", nameQuery)
-  console.log("Region Query: ", regionQuery);
+  console.log("Region Query: ", regionQuery); 
 
 
   return (<>
-  <header className={styles.search_wrap}>
+     {/*  <header className='header_default'> */}
+     <header className='header_default'>
+     <Heading>Nations Of Planet Earth</Heading>
+        <ul>
+           <li >
+            <Link 
+            href="/" 
+            className='link'
+            onClick={()=> clearAll()}
+            >
+            Home
+            </Link>
+          </li>
+        </ul>
+        <SearchByName
+          onSearch={setNameQuery} 
+          search={nameQuery}
+        />
+        <SelectByRegion
+          onSelect={setRegionQuery} 
+        />
+      </header>
+{/*   <header className={styles.search_wrap}>
     <SearchByName
-    onSearch={setNameQuery}
+    onSearch={setNameQuery} 
+    search={nameQuery}
    />
    <SelectByRegion
-   onSelect={setRegionQuery}
+    onSelect={setRegionQuery} 
+    select={regionQuery}
    />
-  </header>
-    <ul className={styles.country_list_wrap}>
+  </header> */}
+  <section>
+  <ul className={styles.country_list_wrap}>
     <ListItem 
     data={handleSelect()}
     />
     </ul>
+  </section>
   </>)
 }

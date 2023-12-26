@@ -58,7 +58,18 @@ export default function NationDetails({}) {
 
 
   return (<>
-    <section>
+  <header className='header_default'>
+        <ul>
+           <li >
+            <Link 
+            href="/" 
+            className='link'>
+            Home
+            </Link>
+          </li>
+        </ul>
+  </header>
+  <section>
     <div className='details_wrap'>
       <h1>{nation.name.common}</h1>
         <Image 
