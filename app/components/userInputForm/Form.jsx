@@ -1,7 +1,7 @@
 /* :: User Input Form :: */
 import './form.css';
 
-export default function Form({onHandleChange, input}){
+export default function Form({onHandleChange, input, onHandleInput}){
 
     return(<>
     <section className='form_wrap'>
@@ -26,6 +26,7 @@ export default function Form({onHandleChange, input}){
                     id='selectbar'
                     className='select_region'   
                     onChange={(e)=> onHandleChange(e)} 
+                    onInput={(e)=>onHandleInput(e)}
                     value={input.regionSelect}
                     >
                     <option></option>

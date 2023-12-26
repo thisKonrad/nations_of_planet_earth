@@ -20,7 +20,6 @@ function handleChange(event){
   setUserInput({ ...userInput, [name]: value });
 };
 
-  
   const { data, isLoading, error } = useData();
 
   /* API status handling: */
@@ -41,8 +40,10 @@ function handleChange(event){
   const sortedData = data.slice().sort(
   (a,b)=> a.name.common.localeCompare(b.name.common));
 
+
   function handleUserInput(userInput){
-    if(!userInput) {
+    if(userInput.nameSearch === '' &&
+       userInput.regionSelect === '') {
       return sortedData;
     }
     else if(userInput.nameSearch){
@@ -55,10 +56,15 @@ function handleChange(event){
     } 
     console.log("USER_Name Search::", userInput.nameSearch)
     console.log("USER_Region Select::", userInput.regionSelect)
+
+  }
+
+  function clearNameSearch(){
+    setUserInput({...userInput.nameSearch = ''})
   }
 
   function clearAll(){
-    setUserInput('')
+    //setUserInput({...userInput.value=''})
   }
 
 return (<>
@@ -78,6 +84,7 @@ return (<>
         <Form
         input={userInput}
         onHandleChange={handleChange}
+        onHandleInput={clearNameSearch}
         />
       </header>
   <section>
