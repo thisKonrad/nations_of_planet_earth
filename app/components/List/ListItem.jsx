@@ -1,3 +1,4 @@
+/* :::: LIST ITEM :::: */
 import Link from 'next/link';
 import Image from "next/image";
 import './list_item.css';

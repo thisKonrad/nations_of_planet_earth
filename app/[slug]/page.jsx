@@ -1,4 +1,4 @@
-/* :::: Country Details Slug Page :::: */
+/* :::: DETAILS SLUG PAGE :::: */
 
 'use client'
 import { useSearchParams } from "next/navigation";
@@ -7,6 +7,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import './details_style.css'
+
 
 export default function NationDetails({}) {
 
@@ -101,7 +102,7 @@ export default function NationDetails({}) {
           show on maps 
         </button>
         </Link>
-        <ul>
+        <ul className='details_list'>
         {<li>
             <div className='info_article'>
               <p>Official Name: {nation.name.official}</p>

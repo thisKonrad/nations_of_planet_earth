@@ -67,7 +67,6 @@ function clearNameSearch(){
     setUserInput((userInput)=>({...userInput.nameSearch=''}))
   } 
 
-
 function clearAll(){
       setUserInput((userInput) => 
       Object.assign({}, userInput, { 

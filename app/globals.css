@@ -1,12 +1,14 @@
+/* :::: GLOBAL STYLE :::: */
 *{margin: 0; padding: 0; box-sizing: border-box;}
  
 :root{
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Courier New', Courier, monospace; 
   font-size: 100%;
   --bodyBackground: rgb(240, 240, 240);
-  --mainBackground: rgb(93, 93, 172);
-  --headerBackground: whitesmoke;
-  --footerBackground: gainsboro;
+  --mainBackground: rgb(76, 185, 231);
+  --headerBackground:rgb(255, 255, 236);
+  --cardColor:rgb(241, 228, 195);
+  --mapsButtonColor: rgb(255, 243, 211);
 }
  
 body{
@@ -29,7 +31,6 @@ body{
   width: 100%;
   top: 0;
   padding: 1rem;
-/*   margin-bottom: 6rem; */
   background: var(--headerBackground);
   box-shadow: 0px 0px 1rem black;
 }
@@ -55,17 +56,4 @@ body{
 }
 .link_wrap{
   list-style: none;
-}
-
-footer{
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  bottom: 0;
-  padding: 1rem;
-  margin-top: 1rem;
-  background: var(--footerBackground);
-  box-shadow: 0px 0px 1rem black;
 }
