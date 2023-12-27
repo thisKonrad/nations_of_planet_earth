@@ -1,3 +1,4 @@
+/* :::: PAGE :::: */
 'use client';
 import useData from './fetchSWR';
 import { useState } from 'react';
@@ -66,7 +67,8 @@ function clearNameSearch(){
     setUserInput((userInput)=>({...userInput.nameSearch=''}))
   } 
 
-  function clearAll(){
+
+function clearAll(){
       setUserInput((userInput) => 
       Object.assign({}, userInput, { 
         nameSearch:'',
@@ -76,25 +78,27 @@ function clearNameSearch(){
 
 
 return (<>
-     <header className='header_default'>
-     <Heading>Nations Of Planet Earth</Heading>
-        <ul>
-           <li >
+    <header className='header_default'>
+      <section className='home_wrap'>
+        <div>
+        <Heading>Nations Of Planet Earth</Heading>
+        </div>
+        <div className='link_wrap'>
             <Link 
             href="/" 
-            className='link'
+            className='home_link'
             onClick={()=> clearAll()}
             >
             Home
             </Link>
-          </li>
-        </ul>
+         </div>
         <Form
         input={userInput}
         onHandleChange={handleChange}
         onHandleInput={clearNameSearch}
         />
-      </header>
+      </section>
+    </header>
   <section>
   <ul className={styles.country_list_wrap}>
     <ListItem
@@ -103,4 +107,4 @@ return (<>
     </ul>  
   </section>
   </>)
-}
+};

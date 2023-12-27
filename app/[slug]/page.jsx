@@ -1,4 +1,5 @@
-/* :::: Country Details Slug :::: */
+/* :::: Country Details Slug Page :::: */
+
 'use client'
 import { useSearchParams } from "next/navigation";
 import useData from '../fetchSWR';
@@ -58,16 +59,14 @@ export default function NationDetails({}) {
 
 
   return (<>
-  <header className='header_default'>
-        <ul>
-           <li >
+  <header className='header_default' style={{height: '6rem'}}>
+        <div className='link_wrap'>
             <Link 
             href="/" 
-            className='link'>
+            className='home_link'>
             Home
             </Link>
-          </li>
-        </ul>
+        </div>
   </header>
   <section>
     <div className='details_wrap'>

@@ -20,8 +20,8 @@ export default function Form({onHandleChange, input, onHandleInput}){
                 </input>
             </label> 
             <label htmlFor='select_region'>
-            Select a Region:
-                <select
+                Select a Region:
+                    <select
                     name='regionSelect' 
                     id='selectbar'
                     className='select_region'   
@@ -36,8 +36,8 @@ export default function Form({onHandleChange, input, onHandleInput}){
                     <option>Europe</option>
                     <option>Oceania</option>
                     <option>Antarctic</option>
-                </select>
-            </label>
+                    </select>
+                </label>
         </form>
     </section>
     </>)

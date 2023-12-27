@@ -1,4 +1,4 @@
-/* :::: layout :::: */
+/* :::: LAYOUT :::: */
 import styles from './page.module.css';
 import './globals.css';
 
@@ -14,9 +14,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-   {/*    <header className='header_default'>
-        <NavBar/>
-      </header> */}
       <header></header>
       <main className={styles.main}>
       {children}
