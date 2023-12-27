@@ -51,6 +51,7 @@ function handleChange(event){
       nation.name.common.includes(userInput.nameSearch));
     }
     else if(userInput.regionSelect){
+
       return sortedData.filter((nation)=> 
       nation.region === userInput.regionSelect);
     } 
@@ -59,13 +60,20 @@ function handleChange(event){
 
   }
 
-  function clearNameSearch(){
-    setUserInput({...userInput.nameSearch = ''})
-  }
+
+function clearNameSearch(){
+    //setUser((user) => ({ ...user, name: "Mark" }));
+    setUserInput((userInput)=>({...userInput.nameSearch=''}))
+  } 
 
   function clearAll(){
-    //setUserInput({...userInput.value=''})
+      setUserInput((userInput) => 
+      Object.assign({}, userInput, { 
+        nameSearch:'',
+        regionSelect:'',
+    }));
   }
+
 
 return (<>
      <header className='header_default'>

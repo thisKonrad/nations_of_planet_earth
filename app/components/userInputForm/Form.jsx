@@ -6,7 +6,7 @@ export default function Form({onHandleChange, input, onHandleInput}){
     return(<>
     <section className='form_wrap'>
       {/*   <form type='submit' onSubmit={(e)=>onHandleSubmit(e)}> */}
-      <form>
+      <form onSubmit={e => { e.preventDefault()}}>
             <label htmlFor='searchbar'>
                 Search by Name:
                 <input type='text'
