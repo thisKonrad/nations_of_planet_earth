@@ -1,6 +1,6 @@
 # nations of planet earth
 
-this is what ive done with the free Rest Countries API
+this is what i have done with the free Rest Countries API
 it was fun..
  thanks to the guys from Rest Countries!
 
