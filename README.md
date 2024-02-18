@@ -1,8 +1,8 @@
 # nations of planet earth
 
-this is what i have done with the free Rest Countries API
+this is what i have build with the free Rest Countries API
 it was fun..
- thanks to the guys from Rest Countries!
+thanks to the guys from Rest Countries! 🌍
 
 About my little app:
 
